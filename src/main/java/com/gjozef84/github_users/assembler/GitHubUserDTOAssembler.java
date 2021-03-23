@@ -21,11 +21,11 @@ public class GitHubUserDTOAssembler {
         return userDataDTO;
     }
 
-    private Long calculateUserData(long followers, long publicRepos) {
+    private double calculateUserData(long followers, long publicRepos) {
         if (followers == 0) {
-            return 0L;
+            return 0.00;
         } else {
-            return 6 / followers * (2 + publicRepos);
+            return (double) 6 / followers * (2 + publicRepos);
         }
     }
 }

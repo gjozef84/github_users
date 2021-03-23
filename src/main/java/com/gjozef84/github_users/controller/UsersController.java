@@ -3,7 +3,7 @@ package com.gjozef84.github_users.controller;
 import com.gjozef84.github_users.dto.UserDataDTO;
 import com.gjozef84.github_users.dto.UserStatisticsDTO;
 import com.gjozef84.github_users.service.GitHubUserRequestStatisticsService;
-import com.gjozef84.github_users.service.UsersService;
+import com.gjozef84.github_users.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -20,14 +20,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class UsersController {
 
-    private final UsersService usersService;
+    private final UserService userService;
     private final GitHubUserRequestStatisticsService gitHubUserRequestStatisticsService;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UserDataDTO> getUser(@PathVariable("login") String userLogin) {
         log.info("called getUser(String {}))", userLogin);
 
-        UserDataDTO responseDTO = usersService.getUser(userLogin);
+        UserDataDTO responseDTO = userService.getUser(userLogin);
         ResponseEntity<UserDataDTO> result = new ResponseEntity<>(responseDTO, HttpStatus.OK);
 
         log.info("about to return getUser :: result='{}'", result);

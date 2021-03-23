@@ -24,23 +24,23 @@ import java.util.Map;
 
 @Component
 @Slf4j
-public class GitHubUsersClient {
+public class GitHubUsersWebClient {
 
     private final String scheme;
     private final String host;
     private final String path;
     private final RestTemplate restTemplate;
 
-    public GitHubUsersClient(@Value("${github-users.webclient.scheme}") String scheme,
-                             @Value("${github-users.webclient.host}") String host,
-                             @Value("${github-users.webclient.path}") String path) {
+    public GitHubUsersWebClient(@Value("${github-users.webclient.scheme}") String scheme,
+                                @Value("${github-users.webclient.host}") String host,
+                                @Value("${github-users.webclient.path}") String path) {
         this.scheme = scheme;
         this.host = host;
         this.path = path;
         this.restTemplate = new RestTemplate();
     }
 
-    public GitHubUserDTO getGitHubUser(String login) {
+    public GitHubUserDTO getGitHubUserByLogin(String login) {
         Map<String, Object> params = new HashMap<>();
         params.put("login", login);
         String uri = createURI(params);

@@ -24,7 +24,8 @@ public class GitHubUserRequestStatisticsServiceImpl implements GitHubUserRequest
     public void updateGitHubUserRequestStatistics(String userLogin) {
         log.info("updateGitHubUserRequestStatistics(String {})", userLogin);
         final GitHubUserRequestStatistics gitHubUserRequestStatistics =
-            gitHubUserRequestStatisticsRepository.findByLogin(userLogin).orElseGet(() -> createNewGitHubUserRequestStatistics(userLogin));
+            gitHubUserRequestStatisticsRepository.findByLogin(userLogin)
+                .orElseGet(() -> createNewGitHubUserRequestStatistics(userLogin));
         gitHubUserRequestStatistics.setRequestCount(gitHubUserRequestStatistics.getRequestCount() + 1);
         gitHubUserRequestStatistics.setUpdatedAt(LocalDateTime.now());
         gitHubUserRequestStatisticsRepository.save(gitHubUserRequestStatistics);

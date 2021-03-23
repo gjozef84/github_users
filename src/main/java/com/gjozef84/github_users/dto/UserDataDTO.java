@@ -19,5 +19,5 @@ public class UserDataDTO implements AbstractDTO {
     private LocalDateTime createdAt;
     private Long followers;
     private Long publicRepos;
-    private Long calculations;
+    private double calculations;
 }
